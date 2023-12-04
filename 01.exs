@@ -36,5 +36,5 @@ case status do
     IO.puts(sum)
 
   :error ->
-    IO.puts("Create 00.txt before running this script!")
+    IO.puts("Create 01.txt before running this script!")
 end
