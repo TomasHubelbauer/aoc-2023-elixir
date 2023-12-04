@@ -22,12 +22,18 @@ Elixir CLI.
 I am also using the ElixirLS VS Code extension for an Elixir language server
 providing syntax highlighting and auto-completion.
 
+## Status
+
+I've solved all the puzzles up until day 4 part 1 and the part 2 awaits me.
+
+https://adventofcode.com/2023/day/4#part2
+
 ## Puzzles
 
 - [x] [Day 01](https://adventofcode.com/2023/day/1) - [01.exs](01.exs)
 - [x] [Day 02](https://adventofcode.com/2023/day/2) - [02.exs](02.exs)
 - [x] [Day 03](https://adventofcode.com/2023/day/3) - [03.v2.exs](03.v2.exs)
-- [x] [Day 04](https://adventofcode.com/2023/day/4) - [04.exs](04.exs)
+- [x] [Day 04](https://adventofcode.com/2023/day/4) - [04.exs](04.exs) + WIP
 - [ ] Day 05
 - [ ] Day 06
 - [ ] Day 07
