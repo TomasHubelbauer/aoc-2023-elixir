@@ -27,7 +27,7 @@ providing syntax highlighting and auto-completion.
 - [x] [Day 01](https://adventofcode.com/2023/day/1) - [01.exs](01.exs)
 - [x] [Day 02](https://adventofcode.com/2023/day/2) - [02.exs](02.exs)
 - [x] [Day 03](https://adventofcode.com/2023/day/3) - [03.v2.exs](03.v2.exs)
-- [ ] Day 04
+- [x] [Day 04](https://adventofcode.com/2023/day/4) - [04.exs](04.exs)
 - [ ] Day 05
 - [ ] Day 06
 - [ ] Day 07
