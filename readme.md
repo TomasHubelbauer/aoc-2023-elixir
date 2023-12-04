@@ -25,7 +25,7 @@ providing syntax highlighting and auto-completion.
 ## Puzzles
 
 - [x] [Day 01](https://adventofcode.com/2023/day/1) - [01.exs](01.exs)
-- [ ] Day 02
+- [x] [Day 02](https://adventofcode.com/2023/day/2) - [02.exs](02.exs)
 - [ ] Day 03
 - [ ] Day 04
 - [ ] Day 05
