@@ -75,6 +75,16 @@ results =
 # Extract the serials from the results
 usedSerials = Enum.map(results, fn {_, _, serials} -> serials end) |> List.flatten()
 
-sum = Enum.reduce(usedSerials, 0, fn serial, acc -> acc + serial end)
+partSum = Enum.reduce(usedSerials, 0, fn serial, acc -> acc + serial end)
 
-IO.inspect(sum)
+IO.inspect(partSum)
+
+gears =
+  Enum.filter(results, fn {char, _, serials} -> char == "*" and Enum.count(serials) == 2 end)
+
+gearSum =
+  Enum.reduce(gears, 0, fn {_, _, serials}, acc ->
+    acc + Enum.at(serials, 0) * Enum.at(serials, 1)
+  end)
+
+IO.inspect(gearSum)
