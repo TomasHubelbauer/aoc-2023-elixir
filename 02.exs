@@ -70,15 +70,37 @@ checkGame = fn game, limits ->
   Enum.all?(game.turns, fn turn -> checkTurn.(turn, limits) end)
 end
 
+determineLimits = fn game ->
+  Enum.reduce(game.turns, %{red: 0, green: 0, blue: 0}, fn turn, limits ->
+    Enum.reduce(turn, limits, fn draw, limits ->
+      case draw.color do
+        :red -> %{limits | red: max(limits.red, draw.number)}
+        :green -> %{limits | green: max(limits.green, draw.number)}
+        :blue -> %{limits | blue: max(limits.blue, draw.number)}
+      end
+    end)
+  end)
+end
+
 case status do
   :ok ->
     lines = String.split(text, "\n")
     nonEmptyLines = Enum.filter(lines, fn line -> String.length(line) > 0 end)
     games = Enum.map(nonEmptyLines, fn line -> parseGame.(line) end)
+
     limits = %{red: 12, green: 13, blue: 14}
     validGames = Enum.filter(games, fn game -> checkGame.(game, limits) end)
-    sum = Enum.reduce(validGames, 0, fn game, acc -> acc + game.id end)
-    IO.puts(sum)
+    idSum = Enum.reduce(validGames, 0, fn game, acc -> acc + game.id end)
+    IO.puts(idSum)
+
+    powers =
+      Enum.map(games, fn game ->
+        limits = determineLimits.(game)
+        limits.red * limits.green * limits.blue
+      end)
+
+    powerSum = Enum.reduce(powers, 0, fn power, acc -> acc + power end)
+    IO.puts(powerSum)
 
   :error ->
     IO.puts("Create 02.txt before running this script!")
