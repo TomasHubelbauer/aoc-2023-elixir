@@ -42,6 +42,39 @@ scores =
     {id, score}
   end)
 
-sum = Enum.reduce(scores, 0, fn {_, score}, sum -> sum + score end)
+scoreSum = Enum.reduce(scores, 0, fn {_, score}, sum -> sum + score end)
 
-IO.inspect(sum)
+IO.inspect(scoreSum)
+
+# Make a map of card IDs to the number of copies and set the default to 1
+copies =
+  Enum.reduce(cards, %{}, fn {id, _, _}, copies -> Map.update(copies, id, 1, &(&1 + 1)) end)
+
+# Process the cards in order and bump the downstream card copies by the scores
+copies =
+  Enum.reduce(Enum.with_index(cards), copies, fn {{id, winners, randoms}, index}, copies ->
+    count = copies[id]
+    # IO.inspect("Processing card #{id} with #{count} copies")
+
+    Enum.reduce(1..count, copies, fn round, copies ->
+      score =
+        Enum.reduce(randoms, 0, fn random, score ->
+          if random in winners, do: score + 1, else: score
+        end)
+
+      # IO.inspect("Round #{round}/#{copies[id]} of card #{id} yields #{score}")
+
+      if score == 0,
+        do: copies,
+        else:
+          Enum.reduce(1..score, copies, fn score, copies ->
+            {id, _, _} = Enum.at(cards, index + score)
+            # IO.inspect("Bumping card #{id} from #{copies[id]} to #{copies[id] + 1}")
+            Map.update(copies, id, 1, &(&1 + 1))
+          end)
+    end)
+  end)
+
+cardSum = Enum.reduce(cards, 0, fn {id, _, _}, sum -> sum + copies[id] end)
+
+IO.inspect(cardSum)
