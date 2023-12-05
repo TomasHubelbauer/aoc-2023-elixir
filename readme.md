@@ -24,7 +24,7 @@ providing syntax highlighting and auto-completion.
 
 ## Status
 
-I've solved all the puzzles up until day 4 and the day 5 is up.
+I've solved all the puzzles up until day 4 and the day 5 one is up.
 
 https://adventofcode.com/2023/day/5
 
