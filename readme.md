@@ -49,6 +49,6 @@ for syntax highlighting and auto-completion.
 ### [Day 05](https://adventofcode.com/2023/day/5)
 
 - [x] Day 5 Part 1
-- [ ] Day 5 Part 2
+- [ ] Day 5 Part 2 WIP
 
 [05.exs](05.exs)

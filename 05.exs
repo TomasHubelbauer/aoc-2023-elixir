@@ -148,3 +148,18 @@ paths = Enum.map(seeds, fn seed -> lookupPath.(seed) end)
 min = Enum.min(paths)
 
 IO.inspect(min)
+
+# TODO: Optimize this so it actually finishes at some point
+# Probably by expanding the maps and trading memory for lookup speed
+ranges =
+  Enum.chunk_every(seeds, 2)
+  |> Enum.map(fn [start, length] -> [start, start + length - 1] end)
+
+rangesMin =
+  Enum.reduce(ranges, [], fn [start, finish], indices ->
+    indices ++ Enum.map(start..finish, fn index -> index end)
+  end)
+  |> Enum.map(fn seed -> lookupPath.(seed) end)
+  |> Enum.min()
+
+IO.inspect(rangesMin)
